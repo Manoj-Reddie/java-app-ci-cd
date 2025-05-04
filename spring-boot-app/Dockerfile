@@ -23,5 +23,6 @@ FROM eclipse-temurin:11-jre
 WORKDIR /opt/app
 COPY --from=builder /app/target/*.jar app.jar
 
+CMD ["cat"]
 ENTRYPOINT ["java", "-jar", "app.jar"]
 
