@@ -16,13 +16,11 @@ FROM maven:3.9.6-eclipse-temurin-11 AS builder
 WORKDIR /app
 COPY . .
 RUN mvn clean package -DskipTests
-
+CMD ["cat"]
 # Stage 2: Run the JAR
 FROM eclipse-temurin:11-jre
 
 WORKDIR /opt/app
 COPY --from=builder /app/target/*.jar app.jar
-
-CMD ["cat"]
 ENTRYPOINT ["java", "-jar", "app.jar"]
 
